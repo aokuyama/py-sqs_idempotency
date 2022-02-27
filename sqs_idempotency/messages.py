@@ -1,5 +1,3 @@
-
-from logging import raiseExceptions
 import unittest
 from message import Message
 

@@ -1,6 +1,4 @@
 import unittest
-import boto3
-import botocore.exceptions
 from message import Message
 
 
@@ -11,6 +9,7 @@ class Deduplication:
 
     def _get_dynamodb(self):
         if not self._dynamodb:
+            import boto3
             self._dynamodb = boto3.client('dynamodb')
         return self._dynamodb
 
@@ -18,6 +17,7 @@ class Deduplication:
         return 'deduplication_id'
 
     def lock(self, dedup_id: str) -> bool:
+        import botocore.exceptions
         try:
             self._put(dedup_id)
             return True
@@ -47,7 +47,7 @@ class Deduplication:
         return self.unlock(msg.get_deduplication_id())
 
 
-class TestMessage(unittest.TestCase):
+class TestDeduplication(unittest.TestCase):
     maxDiff = None
 
     class SuccessTest(Deduplication):
@@ -99,4 +99,5 @@ class TestMessage(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    import botocore.exceptions
     unittest.main()
