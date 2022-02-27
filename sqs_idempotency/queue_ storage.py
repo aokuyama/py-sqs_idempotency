@@ -1,4 +1,6 @@
-class Queue:
+import boto3
+
+class QueueStorage:
     def __init__(self, name=None) -> None:
         self._name = name
         self._client = None
@@ -6,7 +8,6 @@ class Queue:
 
     def _get_client(self):
         if not self._client:
-            import boto3
             self._client = boto3.resource('sqs')
         return self._client
 

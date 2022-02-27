@@ -12,6 +12,8 @@ class Message:
     def data(self):
         return json.loads(self.body_raw())
 
+    def get_deduplication_id(self):
+        return self.record['attributes']['MessageDeduplicationId']
 
 class TestMessage(unittest.TestCase):
     maxDiff = None
