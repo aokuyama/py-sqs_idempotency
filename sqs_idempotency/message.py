@@ -15,6 +15,8 @@ class Message:
     def get_deduplication_id(self):
         return self.record['attributes']['MessageDeduplicationId']
 
+    def get_group_id(self):
+        return self.record['attributes']['MessageGroupId']
 
 class TestMessage(unittest.TestCase):
     maxDiff = None
